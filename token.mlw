@@ -22,9 +22,16 @@ module TokenContract (* or a theory? *)
 
   use import UInt256
   use import Address
+
+  (* TODO: avoid using generic array but use a constant-length one *)
   use import array.Array
 
-  let transfer (_from : address) (_to : address) (_orig : array uint256) : array uint256 = _orig
+  let transfer (_from : address) (_to : address) (_orig : array uint256) : array uint256
+  (* when the constant length array comes, this condition can go away. *)
+  requires { to_int _to < _orig.length }
+  =
+    _orig[to_int _to] <- _orig[to_int _to];
+    _orig
 
 end
 
