@@ -18,6 +18,16 @@ module Address
 		constant max = max_address
 end
 
+module BalanceSum
+	use import array.Array
+	use import UInt256
+
+	function lookup (array uint256) int : int
+
+	clone export sum.Sum with
+		type container = array uint256,
+		function f = lookup
+end
 
 module TokenContract (* or a theory? *)
 
