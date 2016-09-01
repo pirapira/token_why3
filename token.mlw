@@ -58,12 +58,7 @@ module TokenContract (* or a theory? *)
 
 	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
 
-		(* when the constant length array comes, this condition can go away. *)
-		requires { Address.to_int _to < _orig.length }
-
-		(* This condition should also go away when the array is of
-		 * the constant length *)
-		requires { Address.to_int _from < _orig.length }
+		requires { _orig.length = Address.max_address + 1 }
 
 		(* This condition should be replaced with a more general condition *)
 		requires { to_int _orig[Address.to_int _from] <= to_int _val + max_uint256 }
