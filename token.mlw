@@ -27,10 +27,16 @@ module TokenContract (* or a theory? *)
   use import array.Array
 
   let transfer (_from : address) (_to : address) (_orig : array uint256) : array uint256
+
   (* when the constant length array comes, this condition can go away. *)
   requires { to_int _to < _orig.length }
+
+  (* This conditions should also go away when the array is of
+   * the constant length *)
+  requires { to_int _from < _orig.length }
   =
     _orig[to_int _to] <- _orig[to_int _to];
+    _orig[to_int _from] <- _orig[to_int _from];
     _orig
 
 end
