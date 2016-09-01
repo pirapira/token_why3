@@ -1,0 +1,6 @@
+(* A handwritten Why3 input for a token contract. *)
+
+module TokenContract (* or a theory? *)
+
+end
+
