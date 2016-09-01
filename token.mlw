@@ -26,6 +26,8 @@ module TokenContract (* or a theory? *)
   (* TODO: avoid using generic array but use a constant-length one *)
   use import array.Array
 
+  exception Revert
+
   let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
 
     (* when the constant length array comes, this condition can go away. *)
@@ -35,18 +37,20 @@ module TokenContract (* or a theory? *)
      * the constant length *)
     requires { Address.to_int _from < _orig.length }
 
-    (* This condition should go away with a guard in the program. *)
-    requires { to_int _orig[Address.to_int _from] >= to_int _val }
-
     (* This condition should be replaced with a more general condition *)
     requires { to_int _orig[Address.to_int _from] <= to_int _val + max_uint256 }
 
     (* This condition should be replaced with a more general condition *)
     requires { to_int _orig[Address.to_int _to] + to_int _val <= max_uint256 }
 
-  = _orig[Address.to_int _from] <- _orig[Address.to_int _from] - _val;
-	_orig[Address.to_int _to] <- _orig[Address.to_int _to] + _val;
-    _orig
-
+  =
+    let backup = _orig in
+    try
+        if _orig[Address.to_int _from] < _val then raise Revert else
+        _orig[Address.to_int _from] <- _orig[Address.to_int _from] - _val;
+        _orig[Address.to_int _to] <- _orig[Address.to_int _to] + _val;
+        _orig
+    with
+      Revert -> backup
+    end
 end
-
