@@ -35,12 +35,11 @@ module TokenContract (* or a theory? *)
 	use BalanceSum
 	use import UInt256
 
-	(* TODO: avoid using generic array but use a constant-length one *)
 	use import array.Array
 
 	(* TODO: turn this into a lemma *)
 	axiom blanceSub :
-		forall _orig _idx _val _lim _new_val.
+		forall _lim _orig _idx _val _new_val.
 			to_int _new_val = to_int (Array.get _orig _idx) - to_int _val ->
 			0 <= _idx < _lim ->
 			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim - to_int _val
@@ -59,9 +58,6 @@ module TokenContract (* or a theory? *)
 	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
 
 		requires { _orig.length = Address.max_address + 1 }
-
-		(* This condition should be replaced with a more general condition *)
-		requires { to_int _orig[Address.to_int _from] <= to_int _val + max_uint256 }
 
 		(* This condition should be replaced with a more general condition *)
 		requires { to_int _orig[Address.to_int _to] + to_int _val <= max_uint256 }
