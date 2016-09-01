@@ -35,13 +35,17 @@ module TokenContract (* or a theory? *)
    * the constant length *)
   requires { Address.to_int _from < _orig.length }
 
-  (* This condition should be replaced with a more general condition *)
+  (* This condition should go away with a guard in the program. *)
   requires { to_int _orig[Address.to_int _from] >= to_int _val }
+
+  (* This condition should be replaced with a more general condition *)
   requires { to_int _orig[Address.to_int _from] <= to_int _val + max_uint256 }
 
-  =
-    _orig[Address.to_int _from] <- _orig[Address.to_int _from] - _val;
-	(*_orig[to_int _to] <- _orig[to_int _to] + _val; *)
+  (* This condition should be replaced with a more general condition *)
+  requires { to_int _orig[Address.to_int _to] + to_int _val <= max_uint256 }
+
+  = _orig[Address.to_int _from] <- _orig[Address.to_int _from] - _val;
+	_orig[Address.to_int _to] <- _orig[Address.to_int _to] + _val;
     _orig
 
 end
