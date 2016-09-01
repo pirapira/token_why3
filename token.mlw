@@ -18,39 +18,40 @@ module Address
 		constant max = max_address
 end
 
+
 module TokenContract (* or a theory? *)
 
-  use Address
-  use import UInt256
+	use Address
+	use import UInt256
 
-  (* TODO: avoid using generic array but use a constant-length one *)
-  use import array.Array
+	(* TODO: avoid using generic array but use a constant-length one *)
+	use import array.Array
 
-  exception Revert
+	exception Revert
 
-  let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
+	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
 
-    (* when the constant length array comes, this condition can go away. *)
-    requires { Address.to_int _to < _orig.length }
+		(* when the constant length array comes, this condition can go away. *)
+		requires { Address.to_int _to < _orig.length }
 
-    (* This condition should also go away when the array is of
-     * the constant length *)
-    requires { Address.to_int _from < _orig.length }
+		(* This condition should also go away when the array is of
+		 * the constant length *)
+		requires { Address.to_int _from < _orig.length }
 
-    (* This condition should be replaced with a more general condition *)
-    requires { to_int _orig[Address.to_int _from] <= to_int _val + max_uint256 }
+		(* This condition should be replaced with a more general condition *)
+		requires { to_int _orig[Address.to_int _from] <= to_int _val + max_uint256 }
 
-    (* This condition should be replaced with a more general condition *)
-    requires { to_int _orig[Address.to_int _to] + to_int _val <= max_uint256 }
+		(* This condition should be replaced with a more general condition *)
+		requires { to_int _orig[Address.to_int _to] + to_int _val <= max_uint256 }
 
-  =
-    let backup = _orig in
-    try
-        if _orig[Address.to_int _from] < _val then raise Revert else
-        _orig[Address.to_int _from] <- _orig[Address.to_int _from] - _val;
-        _orig[Address.to_int _to] <- _orig[Address.to_int _to] + _val;
-        _orig
-    with
-      Revert -> backup
-    end
+	=
+		let backup = _orig in
+		try
+			if _orig[Address.to_int _from] < _val then raise Revert else
+			_orig[Address.to_int _from] <- _orig[Address.to_int _from] - _val;
+			_orig[Address.to_int _to] <- _orig[Address.to_int _to] + _val;
+			_orig
+		with
+			Revert -> backup
+		end
 end
