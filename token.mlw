@@ -32,12 +32,29 @@ end
 module TokenContract (* or a theory? *)
 
 	use Address
+	use BalanceSum
 	use import UInt256
 
 	(* TODO: avoid using generic array but use a constant-length one *)
 	use import array.Array
 
+	(* TODO: turn this into a lemma *)
+	axiom blanceSub :
+		forall _orig _idx _val _lim _new_val.
+			to_int _new_val = to_int (Array.get _orig _idx) - to_int _val ->
+			0 <= _idx < _lim ->
+			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim - to_int _val
+
+	(* TODO: turn this into a lemma *)
+	axiom blanceAdd :
+		forall _orig _idx _val _lim _new_val.
+			to_int _new_val = to_int (Array.get _orig _idx) + to_int _val ->
+			0 <= _idx < _lim ->
+			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim + to_int _val
+
 	exception Revert
+
+	val total : int
 
 	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
 
@@ -54,11 +71,15 @@ module TokenContract (* or a theory? *)
 		(* This condition should be replaced with a more general condition *)
 		requires { to_int _orig[Address.to_int _to] + to_int _val <= max_uint256 }
 
+		requires { BalanceSum.sum _orig 0 (Address.max_address + 1) = total }
+		ensures { BalanceSum.sum _orig 0 (Address.max_address + 1) = total }
+
 	=
 		let backup = _orig in
 		try
 			if _orig[Address.to_int _from] < _val then raise Revert else
 			_orig[Address.to_int _from] <- _orig[Address.to_int _from] - _val;
+			assert { BalanceSum.sum _orig 0 (Address.max_address + 1) = total - to_int _val };
 			_orig[Address.to_int _to] <- _orig[Address.to_int _to] + _val;
 			_orig
 		with
