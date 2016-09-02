@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="4">
+<prover id="0" name="CVC3" version="2.4.1" timelimit="5" memlimit="1000"/>
+<prover id="1" name="CVC4" version="1.4" timelimit="5" memlimit="1000"/>
+<prover id="2" name="Alt-Ergo" version="1.01" timelimit="5" memlimit="1000"/>
+<prover id="3" name="Z3" version="4.4.1" alternative="noBV" timelimit="5" memlimit="1000"/>
+<prover id="4" name="CVC4" version="1.4" alternative="noBV" timelimit="5" memlimit="1000"/>
+<prover id="5" name="Coq" version="8.5pl2" timelimit="5" memlimit="1000"/>
+<prover id="6" name="Z3" version="4.4.1" timelimit="5" memlimit="1000"/>
+<file name="../token.mlw" expanded="true">
+<theory name="UInt256" sum="d41d8cd98f00b204e9800998ecf8427e" expanded="true">
+</theory>
+<theory name="Address" sum="d41d8cd98f00b204e9800998ecf8427e" expanded="true">
+</theory>
+<theory name="BalanceSum" sum="d41d8cd98f00b204e9800998ecf8427e" expanded="true">
+</theory>
+<theory name="BalanceSumTheory" sum="6be05171fde8003370b508dce77d7b2c" expanded="true">
+ <goal name="ltle_eq">
+ <proof prover="2"><result status="valid" time="0.01" steps="4"/></proof>
+ </goal>
+ <goal name="sum_end_no_change">
+ <proof prover="2"><result status="valid" time="0.06" steps="36"/></proof>
+ </goal>
+ <goal name="lookup_set_different">
+ <proof prover="0"><result status="valid" time="0.05"/></proof>
+ <proof prover="2"><result status="valid" time="0.02" steps="8"/></proof>
+ </goal>
+ <goal name="balanceSubCoq0S">
+ <proof prover="0"><result status="timeout" time="4.99"/></proof>
+ <proof prover="2"><result status="valid" time="0.15" steps="51"/></proof>
+ </goal>
+ <goal name="balanceSubCoq00">
+ <proof prover="0"><result status="valid" time="0.02"/></proof>
+ <proof prover="2"><result status="valid" time="0.01" steps="3"/></proof>
+ </goal>
+ <goal name="balanceSubCoq0" expanded="true">
+ <proof prover="0"><result status="timeout" time="4.99"/></proof>
+ <proof prover="1"><result status="timeout" time="5.06"/></proof>
+ <proof prover="2"><result status="timeout" time="5.01"/></proof>
+ <proof prover="3"><result status="timeout" time="4.98"/></proof>
+ <proof prover="4"><result status="timeout" time="5.03"/></proof>
+ <proof prover="5" edited="token_BalanceSumTheory_balanceSubCoq0_3.v"><result status="valid" time="1.29"/></proof>
+ <proof prover="6"><result status="timeout" time="4.98"/></proof>
+ </goal>
+ <goal name="balanceSub">
+ <proof prover="0"><result status="timeout" time="4.99"/></proof>
+ <proof prover="1"><result status="valid" time="0.05"/></proof>
+ <proof prover="2"><result status="timeout" time="5.02"/></proof>
+ <proof prover="3"><result status="valid" time="1.74"/></proof>
+ <proof prover="4"><result status="valid" time="0.04"/></proof>
+ <proof prover="6"><result status="valid" time="1.73"/></proof>
+ </goal>
+ <goal name="balanceAddCoq0S">
+ <proof prover="0"><result status="timeout" time="4.98"/></proof>
+ <proof prover="1"><result status="timeout" time="5.98"/></proof>
+ <proof prover="2"><result status="valid" time="0.12" steps="51"/></proof>
+ <proof prover="3"><result status="timeout" time="4.99"/></proof>
+ <proof prover="4"><result status="timeout" time="5.98"/></proof>
+ <proof prover="6"><result status="timeout" time="4.99"/></proof>
+ </goal>
+ <goal name="balanceAddCoq00">
+ <proof prover="0"><result status="valid" time="0.03"/></proof>
+ <proof prover="1"><result status="valid" time="0.03"/></proof>
+ <proof prover="2"><result status="valid" time="0.02" steps="3"/></proof>
+ <proof prover="3"><result status="valid" time="0.02"/></proof>
+ <proof prover="4"><result status="valid" time="0.04"/></proof>
+ <proof prover="6"><result status="valid" time="0.02"/></proof>
+ </goal>
+ <goal name="balanceAddCoq0" expanded="true">
+ <proof prover="0"><result status="timeout" time="4.98"/></proof>
+ <proof prover="1"><result status="timeout" time="5.99"/></proof>
+ <proof prover="2"><result status="timeout" time="5.00"/></proof>
+ <proof prover="3"><result status="timeout" time="4.99"/></proof>
+ <proof prover="4"><result status="timeout" time="5.99"/></proof>
+ <proof prover="5" edited="token_BalanceSumTheory_balanceAddCoq0_1.v"><result status="valid" time="1.29"/></proof>
+ <proof prover="6"><result status="timeout" time="4.98"/></proof>
+ </goal>
+ <goal name="balanceAdd">
+ <proof prover="0"><result status="timeout" time="4.99"/></proof>
+ <proof prover="1"><result status="valid" time="0.07"/></proof>
+ <proof prover="2"><result status="timeout" time="5.01"/></proof>
+ <proof prover="3"><result status="valid" time="4.05"/></proof>
+ <proof prover="4"><result status="valid" time="0.06"/></proof>
+ <proof prover="6"><result status="valid" time="3.93"/></proof>
+ </goal>
+ <goal name="small_elementCoqS">
+ <proof prover="0"><result status="valid" time="0.26"/></proof>
+ <proof prover="1"><result status="timeout" time="5.99"/></proof>
+ <proof prover="2"><result status="valid" time="0.60" steps="575"/></proof>
+ <proof prover="3"><result status="valid" time="0.04"/></proof>
+ <proof prover="4"><result status="timeout" time="5.98"/></proof>
+ <proof prover="6"><result status="valid" time="0.04"/></proof>
+ </goal>
+ <goal name="small_elementsCoq0">
+ <proof prover="0"><result status="valid" time="0.04"/></proof>
+ <proof prover="1"><result status="valid" time="0.05"/></proof>
+ <proof prover="2"><result status="valid" time="0.03" steps="25"/></proof>
+ <proof prover="3"><result status="valid" time="0.04"/></proof>
+ <proof prover="4"><result status="valid" time="0.05"/></proof>
+ <proof prover="6"><result status="valid" time="0.03"/></proof>
+ </goal>
+ <goal name="small_elementsCoq" expanded="true">
+ <proof prover="0"><result status="timeout" time="4.98"/></proof>
+ <proof prover="1"><result status="timeout" time="5.99"/></proof>
+ <proof prover="2"><result status="timeout" time="5.01"/></proof>
+ <proof prover="3"><result status="timeout" time="4.98"/></proof>
+ <proof prover="4"><result status="timeout" time="5.98"/></proof>
+ <proof prover="5" edited="token_BalanceSumTheory_small_elementsCoq_2.v"><result status="valid" time="1.30"/></proof>
+ <proof prover="6"><result status="timeout" time="4.99"/></proof>
+ </goal>
+ <goal name="small_elements">
+ <proof prover="0"><result status="timeout" time="4.98"/></proof>
+ <proof prover="1"><result status="timeout" time="5.98"/></proof>
+ <proof prover="2"><result status="valid" time="0.05" steps="56"/></proof>
+ <proof prover="3"><result status="valid" time="0.03"/></proof>
+ <proof prover="4"><result status="timeout" time="5.98"/></proof>
+ <proof prover="6"><result status="valid" time="0.03"/></proof>
+ </goal>
+</theory>
+<theory name="TokenContract" sum="a0dc396a113600407349653111bc7663" expanded="true">
+ <goal name="WP_parameter transfer" expl="VC for transfer">
+ <proof prover="0"><result status="timeout" time="4.98"/></proof>
+ <proof prover="1"><result status="timeout" time="5.99"/></proof>
+ <proof prover="2"><result status="valid" time="4.06" steps="1901"/></proof>
+ <proof prover="3"><result status="timeout" time="4.99"/></proof>
+ <proof prover="4"><result status="timeout" time="5.99"/></proof>
+ <proof prover="6"><result status="timeout" time="4.99"/></proof>
+ </goal>
+</theory>
+</file>
+</why3session>
