@@ -29,13 +29,10 @@ module BalanceSum
 		function f = lookup
 end
 
-module TokenContract (* or a theory? *)
-
-	use Address
-	use BalanceSum
+module BalanceSumTheory
 	use import UInt256
-
 	use import array.Array
+	use import BalanceSum
 
 	(* TODO: turn this into a lemma *)
 	axiom blanceSub :
@@ -51,15 +48,25 @@ module TokenContract (* or a theory? *)
 			0 <= _idx < _lim ->
 			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim + to_int _val
 
-	exception Revert
-
-	constant total : int
-	axiom total_small : total <= max_uint256
-
+	(* TODO: turn this into a lemma *)
 	axiom small_elements :
 		forall _array _idx _lim.
 			0 <= _idx <= _lim ->
 			to_int _array[_idx] <= BalanceSum.sum _array 0 (_lim + 1)
+end
+
+module TokenContract (* or a theory? *)
+
+	use Address
+	use BalanceSum
+	use import UInt256
+	use import array.Array
+	use import BalanceSumTheory
+
+	exception Revert
+
+	constant total : int
+	axiom total_small : total <= max_uint256
 
 	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
 
