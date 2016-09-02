@@ -35,15 +35,45 @@ module BalanceSumTheory
 	use import BalanceSum
 
 	(* TODO: turn this into a lemma *)
-	axiom blanceSub :
+	(* This lemma is useful in Coq to prove balanceSubCoq0 *)
+	axiom balanceSubCoq0S :
+		forall x : int.
+			0 <= x ->
+			(forall usorig usidx usval usnew_val.
+				to_int usnew_val = (to_int (Array.get usorig usidx) - to_int usval) ->
+				0 <= usidx < x ->
+				sum (set usorig usidx usnew_val) 0 x = (BalanceSum.sum usorig 0 x - to_int usval)) ->
+			forall usorig usidx usval usnew_val.
+				to_int usnew_val = to_int (Array.get usorig usidx) - to_int usval ->
+				0 <= usidx < x + 1 ->
+				sum (Array.set usorig usidx usnew_val) 0 (x + 1) =
+				sum usorig 0 (x + 1) - to_int usval
+
+	lemma balanceSubCoq00 :
+			forall _orig _idx _val _new_val.
+				to_int _new_val = to_int (Array.get _orig _idx) - to_int _val ->
+				0 <= _idx < 0 ->
+				BalanceSum.sum (Array.set _orig _idx _new_val) 0 0 = BalanceSum.sum _orig 0 0 - to_int _val
+
+	(* This lemma is slightly easier to prove in Coq than [balanceSub], I think. *)
+	lemma balanceSubCoq0 :
+		forall _lim.
+			0 <= _lim ->
+			forall _orig _idx _val _new_val.
+				to_int _new_val = to_int (Array.get _orig _idx) - to_int _val ->
+				0 <= _idx < _lim ->
+				BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim - to_int _val
+
+	(* CVC4 can deduce this from [balanceSubCoq0] *)
+	lemma balanceSub :
 		forall _lim _orig _idx _val _new_val.
 			to_int _new_val = to_int (Array.get _orig _idx) - to_int _val ->
 			0 <= _idx < _lim ->
 			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim - to_int _val
 
 	(* TODO: turn this into a lemma *)
-	axiom blanceAdd :
-		forall _orig _idx _val _lim _new_val.
+	axiom balanceAdd :
+		forall _lim _orig _idx _val _new_val.
 			to_int _new_val = to_int (Array.get _orig _idx) + to_int _val ->
 			0 <= _idx < _lim ->
 			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim + to_int _val
