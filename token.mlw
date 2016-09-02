@@ -122,9 +122,31 @@ module BalanceSumTheory
 			0 <= _idx < _lim ->
 			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim + to_int _val
 
-	(* TODO: turn this into a lemma *)
-	axiom small_elements :
-		forall _array _idx _lim.
+	lemma small_elementCoqS :
+		forall x.
+		0 <= x ->
+		(forall usarray usidx.
+			0 <= usidx <= x ->
+			to_int (Array.get usarray usidx) <= BalanceSum.sum usarray 0 (x + 1)) ->
+		forall usarray usidx.
+			0 <= usidx <= x + 1 ->
+			to_int (Array.get usarray usidx) <= BalanceSum.sum usarray 0 (x + 1 + 1)
+
+	lemma small_elementsCoq0 :
+		forall _array _idx.
+			0 <= _idx <= 0 ->
+			to_int _array[_idx] <= BalanceSum.sum _array 0 (0 + 1)
+
+    (* This lemma is used to prove [small_elements].  This form is slightly easier for Coq. *)
+	lemma small_elementsCoq :
+		forall _lim.
+		0 <= _lim ->
+		forall _array _idx.
+			0 <= _idx <= _lim ->
+			to_int _array[_idx] <= BalanceSum.sum _array 0 (_lim + 1)
+
+	lemma small_elements :
+		forall _lim _array _idx.
 			0 <= _idx <= _lim ->
 			to_int _array[_idx] <= BalanceSum.sum _array 0 (_lim + 1)
 end
