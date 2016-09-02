@@ -64,6 +64,7 @@ module TokenContract (* or a theory? *)
 	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (_orig : array uint256) : array uint256
 
 		requires { _orig.length = Address.max_address + 1 }
+		ensures  { _orig.length = Address.max_address + 1 }
 
 		requires { BalanceSum.sum _orig 0 (Address.max_address + 1) = total }
 		ensures { BalanceSum.sum _orig 0 (Address.max_address + 1) = total }
