@@ -23,6 +23,9 @@ module BalanceSum
 	use import UInt256
 
 	function lookup (array uint256) int : int
+	axiom lookup_get :
+		forall a idx.
+			lookup a idx = to_int (Array.get a idx)
 
 	clone export sum.Sum with
 		type container = array uint256,
@@ -34,9 +37,23 @@ module BalanceSumTheory
 	use import array.Array
 	use import BalanceSum
 
+	lemma ltle_eq :
+		forall x y.
+  			x < y + 1 -> y <= x -> y = x
+
+    lemma sum_end_no_change : forall usorig usidx usnew_val.
+		BalanceSum.sum
+			(Array.set usorig usidx usnew_val) 0 usidx =
+		BalanceSum.sum usorig 0 usidx
+
+	axiom lookup_set_different :
+		forall usorig usidx usnew_val x.
+			usidx < x ->
+			lookup (set usorig usidx usnew_val) x = lookup usorig x
+
 	(* TODO: turn this into a lemma *)
 	(* This lemma is useful in Coq to prove balanceSubCoq0 *)
-	axiom balanceSubCoq0S :
+	lemma balanceSubCoq0S :
 		forall x : int.
 			0 <= x ->
 			(forall usorig usidx usval usnew_val.
