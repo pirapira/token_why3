@@ -41,7 +41,7 @@ module BalanceSumTheory
 		forall x y.
   			x < y + 1 -> y <= x -> y = x
 
-    lemma sum_end_no_change : forall usorig usidx usnew_val.
+	lemma sum_end_no_change : forall usorig usidx usnew_val.
 		BalanceSum.sum
 			(Array.set usorig usidx usnew_val) 0 usidx =
 		BalanceSum.sum usorig 0 usidx
