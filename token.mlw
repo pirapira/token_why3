@@ -87,8 +87,36 @@ module BalanceSumTheory
 			0 <= _idx < _lim ->
 			BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim - to_int _val
 
-	(* TODO: turn this into a lemma *)
-	axiom balanceAdd :
+	(* This lemma is useful in Coq to prove balanceAddCoq0 *)
+	lemma balanceAddCoq0S :
+		forall x : int.
+			0 <= x ->
+			(forall usorig usidx usval usnew_val.
+				to_int usnew_val = (to_int (Array.get usorig usidx) + to_int usval) ->
+				0 <= usidx < x ->
+				sum (set usorig usidx usnew_val) 0 x = (BalanceSum.sum usorig 0 x + to_int usval)) ->
+			forall usorig usidx usval usnew_val.
+				to_int usnew_val = to_int (Array.get usorig usidx) + to_int usval ->
+				0 <= usidx < x + 1 ->
+				sum (Array.set usorig usidx usnew_val) 0 (x + 1) =
+				sum usorig 0 (x + 1) + to_int usval
+
+	lemma balanceAddCoq00 :
+			forall _orig _idx _val _new_val.
+				to_int _new_val = to_int (Array.get _orig _idx) + to_int _val ->
+				0 <= _idx < 0 ->
+				BalanceSum.sum (Array.set _orig _idx _new_val) 0 0 = BalanceSum.sum _orig 0 0 + to_int _val
+
+	(* This lemma is slightly easier to prove in Coq than [balanceAdd], I think. *)
+	lemma balanceAddCoq0 :
+		forall _lim.
+			0 <= _lim ->
+			forall _orig _idx _val _new_val.
+				to_int _new_val = to_int (Array.get _orig _idx) + to_int _val ->
+				0 <= _idx < _lim ->
+				BalanceSum.sum (Array.set _orig _idx _new_val) 0 _lim = BalanceSum.sum _orig 0 _lim + to_int _val
+
+	lemma balanceAdd :
 		forall _lim _orig _idx _val _new_val.
 			to_int _new_val = to_int (Array.get _orig _idx) + to_int _val ->
 			0 <= _idx < _lim ->
@@ -132,6 +160,8 @@ module TokenContract (* or a theory? *)
 			assert { Address.to_int _to <= Address.max_address };
 			assert { to_int _orig[Address.to_int _to] <= BalanceSum.sum _orig 0 (Address.max_address + 1) };
 			_orig[Address.to_int _to] <- _orig[Address.to_int _to] + _val;
+			assert { BalanceSum.sum _orig 0 (Address.max_address + 1) = (total - to_int _val) + to_int _val};
+			assert { BalanceSum.sum _orig 0 (Address.max_address + 1) = total };
 			_orig
 		with
 			Revert -> backup
