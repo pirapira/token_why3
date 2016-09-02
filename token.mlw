@@ -46,12 +46,11 @@ module BalanceSumTheory
 			(Array.set usorig usidx usnew_val) 0 usidx =
 		BalanceSum.sum usorig 0 usidx
 
-	axiom lookup_set_different :
+	lemma lookup_set_different :
 		forall usorig usidx usnew_val x.
 			usidx < x ->
 			lookup (set usorig usidx usnew_val) x = lookup usorig x
 
-	(* TODO: turn this into a lemma *)
 	(* This lemma is useful in Coq to prove balanceSubCoq0 *)
 	lemma balanceSubCoq0S :
 		forall x : int.
