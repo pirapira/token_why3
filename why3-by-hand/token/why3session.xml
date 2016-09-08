@@ -4,7 +4,7 @@
 <why3session shape_version="4">
 <prover id="0" name="CVC3" version="2.4.1" timelimit="5" steplimit="1" memlimit="1000"/>
 <prover id="1" name="CVC4" version="1.4" timelimit="5" steplimit="1" memlimit="1000"/>
-<prover id="2" name="Alt-Ergo" version="1.01" timelimit="5" memlimit="1000"/>
+<prover id="2" name="Alt-Ergo" version="1.01" timelimit="5" steplimit="1" memlimit="1000"/>
 <prover id="3" name="Z3" version="4.4.1" alternative="noBV" timelimit="5" steplimit="1" memlimit="1000"/>
 <prover id="4" name="CVC4" version="1.4" alternative="noBV" timelimit="5" steplimit="1" memlimit="1000"/>
 <prover id="5" name="Coq" version="8.5pl2" timelimit="5" steplimit="1" memlimit="1000"/>
@@ -18,27 +18,27 @@
 </theory>
 <theory name="BalanceSumTheory" sum="6be05171fde8003370b508dce77d7b2c" expanded="true">
  <goal name="ltle_eq">
- <proof prover="2" steplimit="1"><result status="valid" time="0.01" steps="4"/></proof>
+ <proof prover="2"><result status="valid" time="0.01" steps="4"/></proof>
  </goal>
  <goal name="sum_end_no_change">
- <proof prover="2" steplimit="1"><result status="valid" time="0.06" steps="36"/></proof>
+ <proof prover="2"><result status="valid" time="0.06" steps="36"/></proof>
  </goal>
  <goal name="lookup_set_different">
  <proof prover="0"><result status="valid" time="0.05"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.02" steps="8"/></proof>
+ <proof prover="2"><result status="valid" time="0.02" steps="8"/></proof>
  </goal>
  <goal name="balanceSubCoq0S">
  <proof prover="0"><result status="timeout" time="4.99"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.15" steps="51"/></proof>
+ <proof prover="2"><result status="valid" time="0.15" steps="51"/></proof>
  </goal>
  <goal name="balanceSubCoq00">
  <proof prover="0"><result status="valid" time="0.02"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.01" steps="3"/></proof>
+ <proof prover="2"><result status="valid" time="0.01" steps="3"/></proof>
  </goal>
  <goal name="balanceSubCoq0" expanded="true">
  <proof prover="0"><result status="timeout" time="4.99"/></proof>
  <proof prover="1"><result status="timeout" time="5.06"/></proof>
- <proof prover="2" steplimit="1"><result status="timeout" time="5.01"/></proof>
+ <proof prover="2"><result status="timeout" time="5.01"/></proof>
  <proof prover="3"><result status="timeout" time="4.98"/></proof>
  <proof prover="4"><result status="timeout" time="5.03"/></proof>
  <proof prover="5" edited="token_BalanceSumTheory_balanceSubCoq0_3.v"><result status="valid" time="1.29"/></proof>
@@ -47,7 +47,7 @@
  <goal name="balanceSub">
  <proof prover="0"><result status="timeout" time="4.99"/></proof>
  <proof prover="1"><result status="valid" time="0.05"/></proof>
- <proof prover="2" steplimit="1"><result status="timeout" time="5.02"/></proof>
+ <proof prover="2"><result status="timeout" time="5.02"/></proof>
  <proof prover="3"><result status="valid" time="1.74"/></proof>
  <proof prover="4"><result status="valid" time="0.04"/></proof>
  <proof prover="6"><result status="valid" time="1.73"/></proof>
@@ -55,7 +55,7 @@
  <goal name="balanceAddCoq0S">
  <proof prover="0"><result status="timeout" time="4.98"/></proof>
  <proof prover="1"><result status="timeout" time="5.98"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.12" steps="51"/></proof>
+ <proof prover="2"><result status="valid" time="0.12" steps="51"/></proof>
  <proof prover="3"><result status="timeout" time="4.99"/></proof>
  <proof prover="4"><result status="timeout" time="5.98"/></proof>
  <proof prover="6"><result status="timeout" time="4.99"/></proof>
@@ -63,7 +63,7 @@
  <goal name="balanceAddCoq00">
  <proof prover="0"><result status="valid" time="0.03"/></proof>
  <proof prover="1"><result status="valid" time="0.03"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.02" steps="3"/></proof>
+ <proof prover="2"><result status="valid" time="0.02" steps="3"/></proof>
  <proof prover="3"><result status="valid" time="0.02"/></proof>
  <proof prover="4"><result status="valid" time="0.04"/></proof>
  <proof prover="6"><result status="valid" time="0.02"/></proof>
@@ -71,7 +71,7 @@
  <goal name="balanceAddCoq0" expanded="true">
  <proof prover="0"><result status="timeout" time="4.98"/></proof>
  <proof prover="1"><result status="timeout" time="5.99"/></proof>
- <proof prover="2" steplimit="1"><result status="timeout" time="5.00"/></proof>
+ <proof prover="2"><result status="timeout" time="5.00"/></proof>
  <proof prover="3"><result status="timeout" time="4.99"/></proof>
  <proof prover="4"><result status="timeout" time="5.99"/></proof>
  <proof prover="5" edited="token_BalanceSumTheory_balanceAddCoq0_1.v"><result status="valid" time="1.29"/></proof>
@@ -80,7 +80,7 @@
  <goal name="balanceAdd">
  <proof prover="0"><result status="timeout" time="4.99"/></proof>
  <proof prover="1"><result status="valid" time="0.07"/></proof>
- <proof prover="2" steplimit="1"><result status="timeout" time="5.01"/></proof>
+ <proof prover="2"><result status="timeout" time="5.01"/></proof>
  <proof prover="3"><result status="valid" time="4.05"/></proof>
  <proof prover="4"><result status="valid" time="0.06"/></proof>
  <proof prover="6"><result status="valid" time="3.93"/></proof>
@@ -88,7 +88,7 @@
  <goal name="small_elementCoqS">
  <proof prover="0"><result status="valid" time="0.26"/></proof>
  <proof prover="1"><result status="timeout" time="5.99"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.60" steps="575"/></proof>
+ <proof prover="2"><result status="valid" time="0.60" steps="575"/></proof>
  <proof prover="3"><result status="valid" time="0.04"/></proof>
  <proof prover="4"><result status="timeout" time="5.98"/></proof>
  <proof prover="6"><result status="valid" time="0.04"/></proof>
@@ -96,7 +96,7 @@
  <goal name="small_elementsCoq0">
  <proof prover="0"><result status="valid" time="0.04"/></proof>
  <proof prover="1"><result status="valid" time="0.05"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.03" steps="25"/></proof>
+ <proof prover="2"><result status="valid" time="0.03" steps="25"/></proof>
  <proof prover="3"><result status="valid" time="0.04"/></proof>
  <proof prover="4"><result status="valid" time="0.05"/></proof>
  <proof prover="6"><result status="valid" time="0.03"/></proof>
@@ -104,7 +104,7 @@
  <goal name="small_elementsCoq" expanded="true">
  <proof prover="0"><result status="timeout" time="4.98"/></proof>
  <proof prover="1"><result status="timeout" time="5.99"/></proof>
- <proof prover="2" steplimit="1"><result status="timeout" time="5.01"/></proof>
+ <proof prover="2"><result status="timeout" time="5.01"/></proof>
  <proof prover="3"><result status="timeout" time="4.98"/></proof>
  <proof prover="4"><result status="timeout" time="5.98"/></proof>
  <proof prover="5" edited="token_BalanceSumTheory_small_elementsCoq_2.v"><result status="valid" time="1.30"/></proof>
@@ -113,17 +113,17 @@
  <goal name="small_elements">
  <proof prover="0"><result status="timeout" time="4.98"/></proof>
  <proof prover="1"><result status="timeout" time="5.98"/></proof>
- <proof prover="2" steplimit="1"><result status="valid" time="0.05" steps="56"/></proof>
+ <proof prover="2"><result status="valid" time="0.05" steps="56"/></proof>
  <proof prover="3"><result status="valid" time="0.03"/></proof>
  <proof prover="4"><result status="timeout" time="5.98"/></proof>
  <proof prover="6"><result status="valid" time="0.03"/></proof>
  </goal>
 </theory>
-<theory name="TokenContract" sum="38a8cc8c37669b8f78d9d190cf57a37b" expanded="true">
+<theory name="TokenContract" sum="70731606fa8606ac06dfb8f45a20514b" expanded="true">
  <goal name="WP_parameter transfer" expl="VC for transfer" expanded="true">
  <proof prover="0" obsolete="true"><result status="timeout" time="4.98"/></proof>
  <proof prover="1" obsolete="true"><result status="timeout" time="5.99"/></proof>
- <proof prover="2" steplimit="1" obsolete="true"><result status="valid" time="4.06" steps="1901"/></proof>
+ <proof prover="2" obsolete="true"><result status="valid" time="4.06" steps="1901"/></proof>
  <proof prover="3" obsolete="true"><result status="timeout" time="4.99"/></proof>
  <proof prover="4" obsolete="true"><result status="timeout" time="5.99"/></proof>
  <proof prover="6" obsolete="true"><result status="timeout" time="4.99"/></proof>
@@ -134,56 +134,53 @@
   <goal name="WP_parameter transfer.2" expl="2. postcondition">
   <proof prover="2"><result status="valid" time="0.02" steps="11"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.3" expl="3. postcondition">
+  <goal name="WP_parameter transfer.3" expl="3. index in array bounds">
   <proof prover="2"><result status="valid" time="0.02" steps="11"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.4" expl="4. index in array bounds">
-  <proof prover="2"><result status="valid" time="0.02" steps="11"/></proof>
+  <goal name="WP_parameter transfer.4" expl="4. integer overflow">
+  <proof prover="2"><result status="valid" time="0.02" steps="36"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.5" expl="5. integer overflow">
-  <proof prover="2"><result status="valid" time="0.03" steps="36"/></proof>
+  <goal name="WP_parameter transfer.5" expl="5. index in array bounds">
+  <proof prover="2"><result status="valid" time="0.03" steps="13"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.6" expl="6. index in array bounds">
-  <proof prover="2"><result status="valid" time="0.02" steps="13"/></proof>
+  <goal name="WP_parameter transfer.6" expl="6. assertion">
+  <proof prover="2"><result status="valid" time="0.12" steps="66"/></proof>
   </goal>
   <goal name="WP_parameter transfer.7" expl="7. assertion">
-  <proof prover="2"><result status="valid" time="0.13" steps="66"/></proof>
+  <proof prover="2"><result status="valid" time="0.13" steps="22"/></proof>
   </goal>
   <goal name="WP_parameter transfer.8" expl="8. assertion">
-  <proof prover="2"><result status="valid" time="0.03" steps="22"/></proof>
+  <proof prover="2"><result status="valid" time="0.03" steps="56"/></proof>
   </goal>
   <goal name="WP_parameter transfer.9" expl="9. assertion">
-  <proof prover="2"><result status="valid" time="0.05" steps="56"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="46"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.10" expl="10. assertion">
-  <proof prover="2"><result status="valid" time="0.08" steps="46"/></proof>
+  <goal name="WP_parameter transfer.10" expl="10. type invariant">
+  <proof prover="2"><result status="valid" time="0.08" steps="18"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.11" expl="11. type invariant">
+  <goal name="WP_parameter transfer.11" expl="11. index in array bounds">
   <proof prover="2"><result status="valid" time="0.03" steps="18"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.12" expl="12. index in array bounds">
-  <proof prover="2"><result status="valid" time="0.03" steps="18"/></proof>
+  <goal name="WP_parameter transfer.12" expl="12. integer overflow">
+  <proof prover="2"><result status="valid" time="0.03" steps="64"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.13" expl="13. integer overflow">
-  <proof prover="2"><result status="valid" time="0.09" steps="64"/></proof>
+  <goal name="WP_parameter transfer.13" expl="13. index in array bounds">
+  <proof prover="2"><result status="valid" time="0.09" steps="21"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.14" expl="14. index in array bounds">
-  <proof prover="2"><result status="valid" time="0.03" steps="21"/></proof>
-  </goal>
-  <goal name="WP_parameter transfer.15" expl="15. assertion">
+  <goal name="WP_parameter transfer.14" expl="14. assertion">
   <proof prover="2"><result status="valid" time="0.34" steps="105"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.16" expl="16. assertion">
+  <goal name="WP_parameter transfer.15" expl="15. assertion">
   <proof prover="2"><result status="valid" time="0.04" steps="23"/></proof>
+  </goal>
+  <goal name="WP_parameter transfer.16" expl="16. type invariant">
+  <proof prover="2"><result status="valid" time="0.04" steps="24"/></proof>
   </goal>
   <goal name="WP_parameter transfer.17" expl="17. type invariant">
   <proof prover="2"><result status="valid" time="0.04" steps="24"/></proof>
   </goal>
   <goal name="WP_parameter transfer.18" expl="18. postcondition">
   <proof prover="2"><result status="valid" time="0.04" steps="24"/></proof>
-  </goal>
-  <goal name="WP_parameter transfer.19" expl="19. postcondition">
-  <proof prover="2"><result status="valid" time="0.03" steps="24"/></proof>
   </goal>
  </transf>
  </goal>
