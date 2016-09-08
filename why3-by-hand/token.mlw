@@ -165,16 +165,11 @@ module TokenContract (* or a theory? *)
 	type state = {
 		mutable balance: array uint256
 	}
-	invariant { self.balance.length = Address.max_address + 1 }
-	
+	invariant { self.balance.length = Address.max_address + 1 /\ BalanceSum.sum self.balance 0 (Address.max_address + 1) = total }
 
 	axiom total_small : total <= max_uint256
 
 	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (this : state) : state
-
-		requires { BalanceSum.sum this.balance 0 (Address.max_address + 1) = total }
-		ensures { BalanceSum.sum this.balance 0 (Address.max_address + 1) = total }
-
 	=
 		let backup = this in
 		try

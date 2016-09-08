@@ -119,7 +119,7 @@
  <proof prover="6"><result status="valid" time="0.03"/></proof>
  </goal>
 </theory>
-<theory name="TokenContract" sum="70731606fa8606ac06dfb8f45a20514b" expanded="true">
+<theory name="TokenContract" sum="b5918d544c8341532d1f7b86a0f71b6f" expanded="true">
  <goal name="WP_parameter transfer" expl="VC for transfer" expanded="true">
  <proof prover="0" obsolete="true"><result status="timeout" time="4.98"/></proof>
  <proof prover="1" obsolete="true"><result status="timeout" time="5.99"/></proof>
@@ -131,55 +131,49 @@
   <goal name="WP_parameter transfer.1" expl="1. index in array bounds">
   <proof prover="2"><result status="valid" time="0.03" steps="48"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.2" expl="2. postcondition">
+  <goal name="WP_parameter transfer.2" expl="2. index in array bounds">
   <proof prover="2"><result status="valid" time="0.02" steps="11"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.3" expl="3. index in array bounds">
-  <proof prover="2"><result status="valid" time="0.02" steps="11"/></proof>
-  </goal>
-  <goal name="WP_parameter transfer.4" expl="4. integer overflow">
+  <goal name="WP_parameter transfer.3" expl="3. integer overflow">
   <proof prover="2"><result status="valid" time="0.02" steps="36"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.5" expl="5. index in array bounds">
+  <goal name="WP_parameter transfer.4" expl="4. index in array bounds">
   <proof prover="2"><result status="valid" time="0.03" steps="13"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.6" expl="6. assertion">
+  <goal name="WP_parameter transfer.5" expl="5. assertion">
   <proof prover="2"><result status="valid" time="0.12" steps="66"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.7" expl="7. assertion">
+  <goal name="WP_parameter transfer.6" expl="6. assertion">
   <proof prover="2"><result status="valid" time="0.13" steps="22"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.8" expl="8. assertion">
+  <goal name="WP_parameter transfer.7" expl="7. assertion">
   <proof prover="2"><result status="valid" time="0.03" steps="56"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.9" expl="9. assertion">
+  <goal name="WP_parameter transfer.8" expl="8. assertion">
   <proof prover="2"><result status="valid" time="0.05" steps="46"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.10" expl="10. type invariant">
+  <goal name="WP_parameter transfer.9" expl="9. type invariant">
   <proof prover="2"><result status="valid" time="0.08" steps="18"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.11" expl="11. index in array bounds">
+  <goal name="WP_parameter transfer.10" expl="10. index in array bounds">
   <proof prover="2"><result status="valid" time="0.03" steps="18"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.12" expl="12. integer overflow">
+  <goal name="WP_parameter transfer.11" expl="11. integer overflow">
   <proof prover="2"><result status="valid" time="0.03" steps="64"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.13" expl="13. index in array bounds">
+  <goal name="WP_parameter transfer.12" expl="12. index in array bounds">
   <proof prover="2"><result status="valid" time="0.09" steps="21"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.14" expl="14. assertion">
+  <goal name="WP_parameter transfer.13" expl="13. assertion">
   <proof prover="2"><result status="valid" time="0.34" steps="105"/></proof>
   </goal>
-  <goal name="WP_parameter transfer.15" expl="15. assertion">
+  <goal name="WP_parameter transfer.14" expl="14. assertion">
   <proof prover="2"><result status="valid" time="0.04" steps="23"/></proof>
   </goal>
+  <goal name="WP_parameter transfer.15" expl="15. type invariant">
+  <proof prover="2"><result status="valid" time="0.04" steps="24"/></proof>
+  </goal>
   <goal name="WP_parameter transfer.16" expl="16. type invariant">
-  <proof prover="2"><result status="valid" time="0.04" steps="24"/></proof>
-  </goal>
-  <goal name="WP_parameter transfer.17" expl="17. type invariant">
-  <proof prover="2"><result status="valid" time="0.04" steps="24"/></proof>
-  </goal>
-  <goal name="WP_parameter transfer.18" expl="18. postcondition">
   <proof prover="2"><result status="valid" time="0.04" steps="24"/></proof>
   </goal>
  </transf>
