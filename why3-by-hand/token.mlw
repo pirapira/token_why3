@@ -165,23 +165,27 @@ module TokenContract (* or a theory? *)
 	type state = {
 		mutable _balance: array uint256
 	}
-	invariant { self._balance.length = Address.max_address + 1 /\ BalanceSum.sum self._balance 0 (Address.max_address + 1) = total }
+	type account = {
+		mutable balance: uint256;
+		storage: state
+	}
+	invariant { self.storage._balance.length = Address.max_address + 1 /\ BalanceSum.sum self.storage._balance 0 (Address.max_address + 1) = total }
 
 	axiom total_small : total <= max_uint256
 
-	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (this : state) : state
+	let transfer (_from : Address.address) (_to : Address.address) (_val : uint256) (this : account) : account
 	=
 		let backup = this in
 		try
-			if this._balance[Address.to_int _from] < _val then raise Revert else
-			this._balance[Address.to_int _from] <- this._balance[Address.to_int _from] - _val;
-			assert { BalanceSum.sum this._balance 0 (Address.max_address + 1) = total - to_int _val };
+			if this.storage._balance[Address.to_int _from] < _val then raise Revert else
+			this.storage._balance[Address.to_int _from] <- this.storage._balance[Address.to_int _from] - _val;
+			assert { BalanceSum.sum this.storage._balance 0 (Address.max_address + 1) = total - to_int _val };
 			assert { 0 <= Address.to_int _to };
 			assert { Address.to_int _to <= Address.max_address };
-			assert { to_int this._balance[Address.to_int _to] <= BalanceSum.sum this._balance 0 (Address.max_address + 1) };
-			this._balance[Address.to_int _to] <- this._balance[Address.to_int _to] + _val;
-			assert { BalanceSum.sum this._balance 0 (Address.max_address + 1) = (total - to_int _val) + to_int _val};
-			assert { BalanceSum.sum this._balance 0 (Address.max_address + 1) = total };
+			assert { to_int this.storage._balance[Address.to_int _to] <= BalanceSum.sum this.storage._balance 0 (Address.max_address + 1) };
+			this.storage._balance[Address.to_int _to] <- this.storage._balance[Address.to_int _to] + _val;
+			assert { BalanceSum.sum this.storage._balance 0 (Address.max_address + 1) = (total - to_int _val) + to_int _val};
+			assert { BalanceSum.sum this.storage._balance 0 (Address.max_address + 1) = total };
 			this
 		with
 			Revert -> backup
