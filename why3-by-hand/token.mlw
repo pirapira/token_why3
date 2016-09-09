@@ -163,9 +163,9 @@ module TokenContract (* or a theory? *)
 
 	constant total : int
 	type state = {
-		mutable balance: array uint256
+		mutable _balance: array uint256
 	}
-	invariant { self.balance.length = Address.max_address + 1 /\ BalanceSum.sum self.balance 0 (Address.max_address + 1) = total }
+	invariant { self._balance.length = Address.max_address + 1 /\ BalanceSum.sum self._balance 0 (Address.max_address + 1) = total }
 
 	axiom total_small : total <= max_uint256
 
@@ -173,15 +173,15 @@ module TokenContract (* or a theory? *)
 	=
 		let backup = this in
 		try
-			if this.balance[Address.to_int _from] < _val then raise Revert else
-			this.balance[Address.to_int _from] <- this.balance[Address.to_int _from] - _val;
-			assert { BalanceSum.sum this.balance 0 (Address.max_address + 1) = total - to_int _val };
+			if this._balance[Address.to_int _from] < _val then raise Revert else
+			this._balance[Address.to_int _from] <- this._balance[Address.to_int _from] - _val;
+			assert { BalanceSum.sum this._balance 0 (Address.max_address + 1) = total - to_int _val };
 			assert { 0 <= Address.to_int _to };
 			assert { Address.to_int _to <= Address.max_address };
-			assert { to_int this.balance[Address.to_int _to] <= BalanceSum.sum this.balance 0 (Address.max_address + 1) };
-			this.balance[Address.to_int _to] <- this.balance[Address.to_int _to] + _val;
-			assert { BalanceSum.sum this.balance 0 (Address.max_address + 1) = (total - to_int _val) + to_int _val};
-			assert { BalanceSum.sum this.balance 0 (Address.max_address + 1) = total };
+			assert { to_int this._balance[Address.to_int _to] <= BalanceSum.sum this._balance 0 (Address.max_address + 1) };
+			this._balance[Address.to_int _to] <- this._balance[Address.to_int _to] + _val;
+			assert { BalanceSum.sum this._balance 0 (Address.max_address + 1) = (total - to_int _val) + to_int _val};
+			assert { BalanceSum.sum this._balance 0 (Address.max_address + 1) = total };
 			this
 		with
 			Revert -> backup
